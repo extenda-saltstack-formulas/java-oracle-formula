@@ -1,0 +1,30 @@
+---
+driver:
+  name: vagrant
+
+platforms:
+  - name: centos-7.3
+
+provisioner:
+  name: salt_solo
+  is_file_root: true
+  state_top:
+    base:
+      "*":
+        - java
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - java
+
+suites:
+  - name: oracle-jdk-7
+    provisioner:
+      pillars-from-files:
+        java.sls: tests/pillar/oracle-jdk-7.sls
+
+  - name: oracle-jdk-8
+    provisioner:
+      pillars-from-files:
+        java.sls: tests/pillar/oracle-jdk-8.sls

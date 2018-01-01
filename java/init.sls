@@ -1,0 +1,2 @@
+include:
+  - java.environment.oracle
